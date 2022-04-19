@@ -41,6 +41,7 @@ export let NodeEditor = (
     defaultNodes = [],
     context = defaultContext,
     onChange,
+    api={},
     onCommentsChange,
     initialScale,
     spaceToPan = false,
@@ -83,6 +84,14 @@ export let NodeEditor = (
     scale: typeof initialScale === "number" ? clamp(initialScale, 0.1, 7) : 1,
     translate: { x: 0, y: 0 }
   });
+  React.useEffect(() => {
+    console.log("Checking API");
+    console.log(api);
+    if(api) {
+      console.log("Adding dispatchNodes to api");
+      api.dispatchNodes = dispatchNodes;
+    }
+  },[api])
 
   const recalculateConnections = React.useCallback(() => {
     createConnections(nodes, stageState, editorId);
