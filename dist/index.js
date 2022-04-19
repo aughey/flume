@@ -7753,11 +7753,11 @@ exports.NodeEditor = function NodeEditor(_ref, ref) {
       dispatchStageState = _React$useReducer8[1];
 
   React__default.useEffect(function () {
-    console.log("Checking API");
-    console.log(api);
     if (api) {
-      console.log("Adding dispatchNodes to api");
       api.dispatchNodes = dispatchNodes;
+      api.dispatchToasts = dispatchToasts;
+      api.dispatchComments = dispatchComments;
+      api.dispatchStageState = dispatchStageState;
     }
   }, [api]);
 

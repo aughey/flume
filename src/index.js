@@ -85,11 +85,11 @@ export let NodeEditor = (
     translate: { x: 0, y: 0 }
   });
   React.useEffect(() => {
-    console.log("Checking API");
-    console.log(api);
     if(api) {
-      console.log("Adding dispatchNodes to api");
       api.dispatchNodes = dispatchNodes;
+      api.dispatchToasts = dispatchToasts;
+      api.dispatchComments = dispatchComments;
+      api.dispatchStageState = dispatchStageState;      
     }
   },[api])
 
