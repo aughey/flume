@@ -6038,7 +6038,7 @@ var Node = function Node(_ref) {
       stageRect = _ref.stageRect,
       connections = _ref.connections,
       type = _ref.type,
-      nodestyle = _ref.nodestyle,
+      nodeStyle = _ref.nodeStyle,
       inputData = _ref.inputData,
       onDragStart = _ref.onDragStart,
       renderNodeHeader = _ref.renderNodeHeader;
@@ -6185,7 +6185,7 @@ var Node = function Node(_ref) {
       "data-node-id": id,
       "data-flume-component": "node",
       "data-flume-component-type": type,
-      "data-flume-component-style": nodestyle,
+      "data-flume-component-style": nodeStyle,
       onContextMenu: handleContextMenu,
       stageState: stageState,
       stageRect: stageRect
@@ -7308,13 +7308,15 @@ var nodesReducer = function nodesReducer(nodes) {
             y = action.y,
             nodeType = action.nodeType,
             _id = action.id,
-            defaultNode = action.defaultNode;
+            defaultNode = action.defaultNode,
+            nodeStyle = action.nodeStyle;
 
         var newNodeId = _id || nanoid(10);
         var newNode = {
           id: newNodeId,
           x: x,
           y: y,
+          nodeStyle: nodeStyle,
           type: nodeType,
           width: nodeTypes[nodeType].initialWidth || 200,
           connections: {
