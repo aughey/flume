@@ -6038,6 +6038,7 @@ var Node = function Node(_ref) {
       stageRect = _ref.stageRect,
       connections = _ref.connections,
       type = _ref.type,
+      nodestyle = _ref.nodestyle,
       inputData = _ref.inputData,
       onDragStart = _ref.onDragStart,
       renderNodeHeader = _ref.renderNodeHeader;
@@ -6184,6 +6185,7 @@ var Node = function Node(_ref) {
       "data-node-id": id,
       "data-flume-component": "node",
       "data-flume-component-type": type,
+      "data-flume-component-style": nodestyle,
       onContextMenu: handleContextMenu,
       stageState: stageState,
       stageRect: stageRect
