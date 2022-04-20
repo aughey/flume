@@ -6190,6 +6190,7 @@ var Node = function Node(_ref) {
       innerRef: nodeWrapper,
       "data-node-id": id,
       "data-flume-component": "node",
+      "data-flume-component-type": type,
       onContextMenu: handleContextMenu,
       stageState: stageState,
       stageRect: stageRect
