@@ -7397,13 +7397,23 @@ var nodesReducer = function nodesReducer(nodes) {
         })));
       }
 
+    case "SET_NODE_STYLE":
+      {
+        var _nodeId2 = action.nodeId,
+            style = action.style;
+
+        return _extends({}, nodes, defineProperty({}, _nodeId2, _extends({}, nodes[_nodeId2], {
+          nodeStyle: style
+        })));
+      }
+
     case "SET_NODE_COORDINATES":
       {
         var _x4 = action.x,
             _y = action.y,
-            _nodeId2 = action.nodeId;
+            _nodeId3 = action.nodeId;
 
-        return _extends({}, nodes, defineProperty({}, _nodeId2, _extends({}, nodes[_nodeId2], {
+        return _extends({}, nodes, defineProperty({}, _nodeId3, _extends({}, nodes[_nodeId3], {
           x: _x4,
           y: _y
         })));

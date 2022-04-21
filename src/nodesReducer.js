@@ -364,6 +364,17 @@ const nodesReducer = (
       };
     }
 
+    case "SET_NODE_STYLE": {
+      const { nodeId, style } = action;
+      return {
+        ...nodes,
+        [nodeId]: {
+          ...nodes[nodeId],
+          nodeStyle: style
+        }
+      };
+    }
+
     case "SET_NODE_COORDINATES": {
       const { x, y, nodeId } = action;
       return {
