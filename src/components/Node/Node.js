@@ -126,7 +126,7 @@ const Node = ({
   };
 
   const startDrag = e => {
-    onDragStart();
+    onDragStart(id);
   };
 
   const handleContextMenu = e => {

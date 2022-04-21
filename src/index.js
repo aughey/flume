@@ -41,6 +41,7 @@ export let NodeEditor = (
     defaultNodes = [],
     context = defaultContext,
     onChange,
+    onNodeClick,
     api={},
     onCommentsChange,
     initialScale,
@@ -97,7 +98,10 @@ export let NodeEditor = (
     createConnections(nodes, stageState, editorId);
   }, [nodes, editorId, stageState]);
 
-  const recalculateStageRect = () => {
+  const recalculateStageRect = (id) => {
+    if(onNodeClick) {
+      onNodeClick(id);
+    }
     stage.current = document
       .getElementById(`${STAGE_ID}${editorId}`)
       .getBoundingClientRect();

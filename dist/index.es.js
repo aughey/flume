@@ -5590,6 +5590,7 @@ var Connection = function Connection(_ref) {
       to = _ref.to,
       id = _ref.id,
       lineRef = _ref.lineRef,
+      connectionStyle = _ref.connectionStyle,
       outputNodeId = _ref.outputNodeId,
       outputPortName = _ref.outputPortName,
       inputNodeId = _ref.inputNodeId,
@@ -5604,6 +5605,7 @@ var Connection = function Connection(_ref) {
       "data-output-node-id": outputNodeId,
       "data-output-port-name": outputPortName,
       "data-input-node-id": inputNodeId,
+      "data-connection-style": connectionStyle,
       "data-input-port-name": inputPortName,
       "data-flume-component": "connection-path",
       stroke: "rgb(185, 186, 189)",
@@ -6136,7 +6138,7 @@ var Node = function Node(_ref) {
   };
 
   var startDrag = function startDrag(e) {
-    onDragStart();
+    onDragStart(id);
   };
 
   var handleContextMenu = function handleContextMenu(e) {
@@ -7689,6 +7691,7 @@ var NodeEditor = function NodeEditor(_ref, ref) {
       _ref$context = _ref.context,
       context = _ref$context === undefined ? defaultContext : _ref$context,
       onChange = _ref.onChange,
+      onNodeClick = _ref.onNodeClick,
       _ref$api = _ref.api,
       api = _ref$api === undefined ? {} : _ref$api,
       onCommentsChange = _ref.onCommentsChange,
@@ -7763,7 +7766,10 @@ var NodeEditor = function NodeEditor(_ref, ref) {
     createConnections(nodes, stageState, editorId);
   }, [nodes, editorId, stageState]);
 
-  var recalculateStageRect = function recalculateStageRect() {
+  var recalculateStageRect = function recalculateStageRect(id) {
+    if (onNodeClick) {
+      onNodeClick(id);
+    }
     stage.current = document.getElementById("" + STAGE_ID + editorId).getBoundingClientRect();
   };
 
