@@ -6043,6 +6043,7 @@ var Node = function Node(_ref) {
       nodeStyle = _ref.nodeStyle,
       inputData = _ref.inputData,
       onDragStart = _ref.onDragStart,
+      onMouseDown = _ref.onMouseDown,
       renderNodeHeader = _ref.renderNodeHeader;
 
   var cache = React.useContext(CacheContext);
@@ -6141,6 +6142,10 @@ var Node = function Node(_ref) {
     onDragStart(id);
   };
 
+  var mouseDown = function mouseDown(e) {
+    onMouseDown(id);
+  };
+
   var handleContextMenu = function handleContextMenu(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -6181,6 +6186,7 @@ var Node = function Node(_ref) {
         transform: "translate(" + x + "px, " + y + "px)"
       },
       onDragStart: startDrag,
+      onMouseDown: mouseDown,
       onDrag: handleDrag,
       onDragEnd: stopDrag,
       innerRef: nodeWrapper,
@@ -7766,10 +7772,11 @@ var NodeEditor = function NodeEditor(_ref, ref) {
     createConnections(nodes, stageState, editorId);
   }, [nodes, editorId, stageState]);
 
+  var onNodeMouseDown = function onNodeMouseDown(id) {
+    onNodeClick && onNodeClick(id);
+  };
+
   var recalculateStageRect = function recalculateStageRect(id) {
-    if (onNodeClick) {
-      onNodeClick(id);
-    }
     stage.current = document.getElementById("" + STAGE_ID + editorId).getBoundingClientRect();
   };
 
@@ -7915,6 +7922,7 @@ var NodeEditor = function NodeEditor(_ref, ref) {
                       Object.values(nodes).map(function (node) {
                         return React.createElement(Node, _extends({}, node, {
                           stageRect: stage,
+                          onMouseDown: onNodeMouseDown,
                           onDragEnd: triggerRecalculation,
                           onDragStart: recalculateStageRect,
                           renderNodeHeader: renderNodeHeader,

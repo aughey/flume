@@ -98,10 +98,12 @@ export let NodeEditor = (
     createConnections(nodes, stageState, editorId);
   }, [nodes, editorId, stageState]);
 
+  
+  const onNodeMouseDown = (id) => {
+    onNodeClick && onNodeClick(id);
+  }
+
   const recalculateStageRect = (id) => {
-    if(onNodeClick) {
-      onNodeClick(id);
-    }
     stage.current = document
       .getElementById(`${STAGE_ID}${editorId}`)
       .getBoundingClientRect();
@@ -221,6 +223,7 @@ export let NodeEditor = (
                           <Node
                             {...node}
                             stageRect={stage}
+                            onMouseDown={onNodeMouseDown}
                             onDragEnd={triggerRecalculation}
                             onDragStart={recalculateStageRect}
                             renderNodeHeader={renderNodeHeader}

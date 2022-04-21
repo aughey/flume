@@ -23,6 +23,7 @@ const Node = ({
   nodeStyle,
   inputData,
   onDragStart,
+  onMouseDown,
   renderNodeHeader
 }) => {
   const cache = React.useContext(CacheContext);
@@ -129,6 +130,10 @@ const Node = ({
     onDragStart(id);
   };
 
+  const mouseDown = e => {
+    onMouseDown(id);
+  }
+
   const handleContextMenu = e => {
     e.preventDefault();
     e.stopPropagation();
@@ -166,6 +171,7 @@ const Node = ({
         transform: `translate(${x}px, ${y}px)`
       }}
       onDragStart={startDrag}
+      onMouseDown={mouseDown}
       onDrag={handleDrag}
       onDragEnd={stopDrag}
       innerRef={nodeWrapper}
