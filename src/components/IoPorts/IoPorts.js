@@ -215,6 +215,7 @@ const Port = ({
   const nodesDispatch = React.useContext(NodeDispatchContext);
   const stageState = React.useContext(StageContext);
   const editorId = React.useContext(EditorIdContext);
+  const context = React.useContext(ContextContext)
   const stageId = `${STAGE_ID}${editorId}`
   const inputTypes = React.useContext(PortTypesContext);
   const [isDragging, setIsDragging] = React.useState(false);
@@ -331,6 +332,9 @@ const Port = ({
   const handleDragStart = e => {
     e.preventDefault();
     e.stopPropagation();
+
+    context.onPortClick && context.onPortClick(nodeId,name);
+
     const startPort = port.current.getBoundingClientRect();
     const stage = document
       .getElementById(stageId)

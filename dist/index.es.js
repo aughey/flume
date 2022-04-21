@@ -5860,6 +5860,7 @@ var Port = function Port(_ref7) {
   var nodesDispatch = React.useContext(NodeDispatchContext);
   var stageState = React.useContext(StageContext);
   var editorId = React.useContext(EditorIdContext);
+  var context = React.useContext(ContextContext);
   var stageId = "" + STAGE_ID + editorId;
   var inputTypes = React.useContext(PortTypesContext);
 
@@ -5967,6 +5968,9 @@ var Port = function Port(_ref7) {
   var handleDragStart = function handleDragStart(e) {
     e.preventDefault();
     e.stopPropagation();
+
+    context.onPortClick && context.onPortClick(nodeId, name);
+
     var startPort = port.current.getBoundingClientRect();
     var stage = document.getElementById(stageId).getBoundingClientRect();
 
